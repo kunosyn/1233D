@@ -21,22 +21,25 @@ using namespace vex;
   intake motor port - 8
 */
 
-
+// Defining constants
+const int ARM_VEL = 40;
+const int ARM_ROTATION_MAX = 120;
+const int INTAKE_VEL = 30;
 
 // FUNCTIONS
 void move_arms_up()
 {
-  if (armGroup.position(degrees) < 120) // Checks to make sure motors have not exceeded max degrees.
+  if (armGroup.position(degrees) < ARM_ROTATION_MAX) // Checks to make sure motors have not exceeded max degrees.
   {
     armGroup.spin(forward);
-    armGroup.setVelocity(40, percent);
+    armGroup.setVelocity(ARM_VEL, percent);
   }
 }
 
 void move_arms_down()
 {
   armGroup.spin(reverse);
-  armGroup.setVelocity(40, percent);
+  armGroup.setVelocity(ARM_VEL, percent);
 }
 
 
@@ -47,13 +50,13 @@ void stop_arms() {
 void move_intake_up()
 {
   intakeMotor.spin(forward);
-  intakeMotor.setVelocity(45, percent);
+  intakeMotor.setVelocity(INTAKE_VEL, percent);
 }
 
 void move_intake_down()
 {
   intakeMotor.spin(reverse);
-  intakeMotor.setVelocity(45, percent);
+  intakeMotor.setVelocity(INTAKE_VEL, percent);
 }
 
 void stop_intake()
